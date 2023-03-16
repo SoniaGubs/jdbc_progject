@@ -32,8 +32,23 @@
       <artifactId>mysql-connector-j</artifactId>
       <version>8.0.32</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.26</version>
+      <scope>provided</scope>
+    </dependency>
+
 
   </dependencies>
+
 
   <build>
     <finalName>jdbc_progject</finalName>
@@ -68,7 +83,23 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
+
       </plugins>
     </pluginManagement>
+    <plugins>
+    <plugin>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-maven-plugin</artifactId>
+      <version>8.0.5</version>
+      <configuration>
+        <locations>
+          <location>filesystem:src/main/resources/flyway/migrations</location>
+        </locations>
+        <url>jdbc:mysql://localhost:3306/test_2023</url>
+        <user>admin</user>
+        <password>admin</password>
+      </configuration>
+    </plugin>
+    </plugins>
   </build>
 </project>
